@@ -12,6 +12,13 @@ spec:
     - "3600"
     image: docker
     name: docker
+    volumeMounts:
+    - mountPath: /var/run/docker.sock
+      name: docker
+  volumes:
+  - name: docker
+    hostPath:
+      path: /var/run/docker.sock
     '''
 
 podTemplate(cloud: 'kubernetes', label: 'docker', yaml: template) {
